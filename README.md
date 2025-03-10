@@ -1,55 +1,55 @@
 # 🚀 Docker Build Speed Test
 
-Ein elegantes Tool zum Vergleichen der Docker-Build-Geschwindigkeit auf verschiedenen Systemen.
+An elegant tool for comparing Docker build speeds across different systems.
 
 ## ✨ Features
 
-- Übersichtliche Fortschrittsanzeige mit Loading-Animation
-- Präzise Zeitmessung des Build-Prozesses
-- Automatische Verifizierung des Build-Ergebnisses
-- Minimale, aber informative Ausgabe
+- Clean progress display with loading animation
+- Precise build time measurement
+- Automatic build verification
+- Minimal yet informative output
 
-## 📋 Voraussetzungen
+## 📋 Prerequisites
 
-- Docker muss installiert sein
+- Docker must be installed
 
-## 🚀 Schnellstart
+## 🚀 Quick Start
 
-1. Repository klonen:
+1. Clone repository:
 ```bash
 git clone git@github.com:freudenthaler-io/docker-speed-test.git
 cd docker-speed-test
 ```
 
-2. Test ausführen:
+2. Run test:
 ```bash
 ./run-speedtest.sh
 ```
 
-## 📊 Beispielausgabe
+## 📊 Example Output
 
 ```
 🚀 Docker Speed Test
 
-🔄 Starte Geschwindigkeitstest...
+🔄 Starting speed test...
 
-✓ Bereinige alte Images
-✓ Lade Ubuntu Base Image
+✓ Cleaning up old images
+✓ Pulling Ubuntu base image
 
-⏱️  Messe Build-Geschwindigkeit...
-✓ Baue Docker Image
+⏱️  Measuring build speed...
+✓ Building Docker image
 
-📊 Ergebnis:
-Build-Zeit: 41.78 Sekunden
+📊 Result:
+Build time: 41.78 seconds
 
-✓ Verifizierung erfolgreich
+✓ Verification successful
 ```
 
 ## 🔍 Details
 
-Das Test-Image basiert auf `ubuntu:latest` und kompiliert ein einfaches C-Programm. Der gesamte Build-Prozess läuft automatisiert ab und zeigt nur die relevanten Informationen an.
+The test image is based on `ubuntu:latest` and compiles a simple C program. The entire build process runs automatically and displays only relevant information.
 
-## 📜 Lizenz
+## 📜 License
 
-Dieses Projekt steht unter der [MIT-Lizenz](LICENSE).
+This project is licensed under the [MIT License](LICENSE).
 

@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Farben und Formatierung
+# Colors and formatting
 GREEN='\033[0;32m'
 BLUE='\033[0;34m'
 RED='\033[0;31m'
@@ -10,7 +10,7 @@ BOLD='\033[1m'
 # Loading Animation
 spinner=( "⠋" "⠙" "⠹" "⠸" "⠼" "⠴" "⠦" "⠧" "⠇" "⠏" )
 
-# Funktion für Loading-Animation
+# Function for loading animation
 loading() {
     local pid=$1
     local message=$2
@@ -23,7 +23,7 @@ loading() {
     printf "\r${GREEN}✓ ${message}${NC}\n"
 }
 
-# Funktion zum Ausführen von Befehlen mit Loading-Animation
+# Function to execute commands with loading animation
 run_with_loading() {
     local command="$1"
     local message="$2"
@@ -31,44 +31,44 @@ run_with_loading() {
     loading $! "$message"
 }
 
-# Titel
+# Title
 echo -e "\n${BOLD}🚀 Docker Speed Test${NC}\n"
 
-# Docker-Check
+# Docker check
 if ! command -v docker &>/dev/null; then
-    echo -e "${RED}✗ Docker ist nicht installiert${NC}"
+    echo -e "${RED}✗ Docker is not installed${NC}"
     exit 1
 fi
 
-# Hauptprozess
-echo -e "🔄 Starte Geschwindigkeitstest...\n"
+# Main process
+echo -e "🔄 Starting speed test...\n"
 
-# Image löschen falls vorhanden
-run_with_loading "docker image rm speedtest-image 2>/dev/null || true" "Bereinige alte Images"
+# Remove image if exists
+run_with_loading "docker image rm speedtest-image 2>/dev/null || true" "Cleaning up old images"
 
 # Ubuntu base image
-run_with_loading "docker pull ubuntu:latest" "Lade Ubuntu Base Image"
+run_with_loading "docker pull ubuntu:latest" "Pulling Ubuntu base image"
 
-# Build mit Zeitmessung
-echo -e "\n${BOLD}⏱️  Messe Build-Geschwindigkeit...${NC}"
+# Build with time measurement
+echo -e "\n${BOLD}⏱️  Measuring build speed...${NC}"
 start_time=$(date +%s.%N)
 
-# Build durchführen
-run_with_loading "docker build --pull=false -t speedtest-image ." "Baue Docker Image"
+# Perform build
+run_with_loading "docker build --pull=false -t speedtest-image ." "Building Docker image"
 
-# Endzeit und Berechnung
+# End time and calculation
 end_time=$(date +%s.%N)
 build_time=$(echo "$end_time - $start_time" | bc)
 formatted_time=$(printf "%.2f" $build_time)
 
-# Ergebnis ausgeben
-echo -e "\n${BOLD}📊 Ergebnis:${NC}"
-echo -e "${GREEN}Build-Zeit: ${formatted_time} Sekunden${NC}\n"
+# Output result
+echo -e "\n${BOLD}📊 Result:${NC}"
+echo -e "${GREEN}Build time: ${formatted_time} seconds${NC}\n"
 
-# Optional: Verifizierung
+# Optional: Verification
 verify_output=$(docker run --rm speedtest-image 2>/dev/null)
 if [ "$verify_output" == "Speed test" ]; then
-    echo -e "${GREEN}✓ Verifizierung erfolgreich${NC}\n"
+    echo -e "${GREEN}✓ Verification successful${NC}\n"
 else
-    echo -e "${RED}✗ Verifizierung fehlgeschlagen${NC}\n"
+    echo -e "${RED}✗ Verification failed${NC}\n"
 fi 
