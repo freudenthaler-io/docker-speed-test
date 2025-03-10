@@ -8,18 +8,30 @@ if [[ "$OSTYPE" == "msys" || "$OSTYPE" == "cygwin" ]]; then
     fi
 fi
 
-# Check if bc is available (required for floating point math)
-if ! command -v bc >/dev/null 2>&1; then
-    echo "Error: 'bc' is required but not installed."
-    if [[ "$OSTYPE" == "msys" ]]; then
-        echo "For Git Bash, install it using: pacman -S bc"
-    elif [[ "$OSTYPE" == "cygwin" ]]; then
-        echo "For Cygwin, install it using the Cygwin installer"
-    else
-        echo "Please install 'bc' using your package manager"
+# Function to calculate time difference without bc
+calculate_time_diff() {
+    local start=$1
+    local end=$2
+    
+    # Extract seconds and nanoseconds
+    local start_s=${start%.*}
+    local start_ns=${start#*.}
+    local end_s=${end%.*}
+    local end_ns=${end#*.}
+
+    # Calculate difference
+    local diff_s=$((end_s - start_s))
+    local diff_ns=$((end_ns - start_ns))
+    
+    # Adjust if nanoseconds are negative
+    if [ $diff_ns -lt 0 ]; then
+        diff_s=$((diff_s - 1))
+        diff_ns=$((1000000000 + diff_ns))
     fi
-    exit 1
-fi
+
+    # Format to 2 decimal places without bc
+    printf "%.2f" $(echo "scale=2; $diff_s + $diff_ns/1000000000" | bc 2>/dev/null || echo "$diff_s.$diff_ns" | sed 's/\([0-9]\{2\}\).*/\1/')
+}
 
 # Colors and formatting (with Windows compatibility)
 if [[ -t 1 ]]; then
@@ -99,8 +111,7 @@ run_with_loading "docker build --pull=false -t speedtest-image ." "Building Dock
 
 # End time and calculation
 end_time=$(date +%s.%N)
-build_time=$(echo "$end_time - $start_time" | bc)
-formatted_time=$(printf "%.2f" $build_time)
+formatted_time=$(calculate_time_diff "$start_time" "$end_time")
 
 # Output result
 echo -e "\n${BOLD}📊 Result:${NC}"
