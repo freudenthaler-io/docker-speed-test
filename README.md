@@ -14,6 +14,7 @@ An elegant tool for comparing Docker build speeds across different systems.
 
 - Docker must be installed
 - Git for repository access
+- Unix-like environment (bash shell)
 
 ## 🚀 Quick Start
 
@@ -33,7 +34,7 @@ chmod +x run-speedtest.sh
 
 Choose the method that best suits your setup:
 
-#### Option 1: WSL2 (Recommended)
+#### Option 1: WSL2 (Recommended for Best Performance)
 Requirements:
 - Windows Subsystem for Linux 2 (WSL2)
 - Docker Desktop with WSL2 backend
@@ -50,7 +51,7 @@ chmod +x run-speedtest.sh
 ./run-speedtest.sh
 ```
 
-#### Option 2: Git Bash
+#### Option 2: Git Bash (Recommended for Simplicity)
 Requirements:
 - Git Bash
 - Docker Desktop
@@ -64,20 +65,7 @@ cd docker-speed-test
 ./run-speedtest.sh
 ```
 
-#### Option 3: PowerShell
-Requirements:
-- PowerShell
-- Git for Windows
-- Docker Desktop
-
-```powershell
-# 1. Open PowerShell and clone repository
-git clone https://github.com/freudenthaler-io/docker-speed-test.git
-cd docker-speed-test
-
-# 2. Run test using Git's bash
-& 'C:\Program Files\Git\bin\bash.exe' -c "./run-speedtest.sh"
-```
+> **Note**: Pure PowerShell execution is not supported as the script requires a bash shell environment. We recommend using either WSL2 (for best performance) or Git Bash (for simplicity) on Windows systems.
 
 ## 📊 Example Output
 
@@ -109,9 +97,8 @@ The test image is based on `ubuntu:latest` and compiles a simple C program. The 
 - **macOS**: Native Docker performance via virtualization
 
 ### Windows Performance
-- **WSL2**: Best performance on Windows, recommended approach
-- **Git Bash**: Good performance, simple setup
-- **PowerShell**: Good performance, familiar for Windows admins
+- **WSL2**: Best performance on Windows, recommended for power users
+- **Git Bash**: Good performance, recommended for simple setups
 
 ## 📜 License
 
