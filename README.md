@@ -13,8 +13,8 @@ Das Docker-Image basiert auf dem aktuellen Standard Ubuntu-Image (`ubuntu:latest
 ### 1. Klone das Repository
 
 ```bash
-git clone <dein-repo-link>
-cd <repo-verzeichnis>
+git clone git@github.com:freudenthaler-io/docker-speed-test.git
+cd docker-speed-test
 ```
 
 ### 2. Docker-Image bauen und Zeit messen
