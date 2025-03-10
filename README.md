@@ -21,7 +21,7 @@ An elegant tool for comparing Docker build speeds across different systems.
 
 ```bash
 # 1. Clone repository
-git clone git@github.com:freudenthaler-io/docker-speed-test.git
+git clone https://github.com/freudenthaler-io/docker-speed-test.git
 cd docker-speed-test
 
 # 2. Make script executable and run
@@ -40,7 +40,7 @@ Requirements:
 
 ```bash
 # 1. Open WSL terminal and clone repository
-git clone git@github.com:freudenthaler-io/docker-speed-test.git
+git clone https://github.com/freudenthaler-io/docker-speed-test.git
 cd docker-speed-test
 
 # 2. Make script executable
@@ -57,7 +57,7 @@ Requirements:
 
 ```bash
 # 1. Open Git Bash and clone repository
-git clone git@github.com:freudenthaler-io/docker-speed-test.git
+git clone https://github.com/freudenthaler-io/docker-speed-test.git
 cd docker-speed-test
 
 # 2. Run test
@@ -72,7 +72,7 @@ Requirements:
 
 ```powershell
 # 1. Open PowerShell and clone repository
-git clone git@github.com:freudenthaler-io/docker-speed-test.git
+git clone https://github.com/freudenthaler-io/docker-speed-test.git
 cd docker-speed-test
 
 # 2. Run test using Git's bash
